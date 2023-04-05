@@ -1,7 +1,7 @@
 'use strict'
 // integration test
 
-const server = require('../../src/server.js');
+const server = require('../src/server.js');
 const supertest = require('supertest');
 const request = supertest(server.app);
 
