@@ -42,7 +42,7 @@ async function seasonFood(req, res, next) {
 		{ meal: req.body.meal },
 		{
 			where: {
-				id: parseInt(id)
+				id: parseInt(req.params.id)
 			}
 		}
 	)

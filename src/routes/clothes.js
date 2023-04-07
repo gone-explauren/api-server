@@ -44,7 +44,7 @@ async function alterClothes(req, res, next) {
 		{ occasion: req.body.occasion },
 		{
 			where: {
-				id: parseInt(id)
+				id: parseInt(req.params.id)
 			}
 		}
 	)
