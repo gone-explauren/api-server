@@ -26,7 +26,7 @@ describe('Testing the express server', () => {
 });
 
 describe('Testing data models', () => {
-	xtest('Should build a room', async () => {
+	test('Should build a room', async () => {
 		let newRoom = await Room.create({
 			name: 'library',
 			numWindows: 4,
@@ -38,7 +38,7 @@ describe('Testing data models', () => {
 		expect(roomID).toBeTruthy();
 	});
 
-	xtest('Should grow a plant', async () => {
+	test('Should grow a plant', async () => {
 		let newPlant = await Plant.create({
 			species: 'philodendron',
 			sunNeeds: 'indirect light',
@@ -51,12 +51,12 @@ describe('Testing data models', () => {
 		expect(newPlant.roomID).toEqual('roomID');
 	});
 
-	xtest('Can fetch a plant and the room it\'s in', async () => {
+	test('Can fetch a plant and the room it\'s in', async () => {
     let plant = await Plant.read(plantID, {
       include: Room.model
     });
 
-    console.log("Plant with association: ", plant);
+    console.log("Plant with association: ", plant.species);
     expect(plant.species).toEqual('philodendron');
     expect(plant.Room.name).toEqual('Library');
   });
