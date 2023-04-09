@@ -1,12 +1,15 @@
 'use strict'
+
 // integration test
+const { sequelize, Room, Plant } = require('../src/models');
 
-const server = require('../src/server.js');
-const supertest = require('supertest');
-const request = supertest(server.app);
+beforeAll(async() => {
+	await sequelize.sync();
+});
 
-// const error404 = require('../../src/error-handlers/404.js')
-// const error500 = require('../../src/error-handlers/500.js')
+afterAll(async() => {
+	await sequelize.drop();
+});
 
 describe('Testing the express server', () => {
   test('Should return a 404 on a bad route', async () => {
@@ -14,11 +17,47 @@ describe('Testing the express server', () => {
     expect(response.status).toEqual(404);
     // expect(response.body).toEqual({});
   });
+
+  test('Should return a 404 on a bad method', async () => {
+    const response = await request.patch('/plant');
+    expect(response.status).toEqual(404);
+    // expect(response.body).toEqual({});
+  });
 });
 
-test('Should return a 404 on a bad method', async () => {
-  const response = await request.patch('/food');
-  expect(response.status).toEqual(404);
-  // expect(response.body).toEqual({});
-});
+describe('Testing data models', () => {
+	xtest('Should build a room', async () => {
+		let newRoom = await Room.create({
+			name: 'library',
+			numWindows: 4,
+			petAccess: false,
+		});
 
+		roomID = newRoom.id
+		expect(newRoom.name).toEqual('library');
+		expect(roomID).toBeTruthy();
+	});
+
+	xtest('Should grow a plant', async () => {
+		let newPlant = await Plant.create({
+			species: 'philodendron',
+			sunNeeds: 'indirect light',
+			canFlower: false,
+      petSafe: false,
+			roomID: roomID
+		});
+
+		expect(newPlant.species).toEqual('philodendron');
+		expect(newPlant.roomID).toEqual('roomID');
+	});
+
+	xtest('Can fetch a plant and the room it\'s in', async () => {
+    let plant = await Plant.read(plantID, {
+      include: Room.model
+    });
+
+    console.log("Plant with association: ", plant);
+    expect(plant.species).toEqual('philodendron');
+    expect(plant.Room.name).toEqual('Library');
+  });
+});
