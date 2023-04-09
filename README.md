@@ -1,5 +1,5 @@
 # basic-api
-* Last working version
+* Working verision of lab-03
 * Includes original routes and models for Food and Clothes
 * All further work should be done in subsequent branches
 
