@@ -1,2 +1,6 @@
 # api-server
-* deployed site: <https://dashboard.render.com/web/srv-cgn0mqjh4hsvot2pqmng/deploys/dep-cgn0mqrh4hsvot2prbp0>
+* Deployed site: <https://api-server-8uyb.onrender.com>
+
+## Check Routes
+* <https://api-server-8uyb.onrender.com/room>
+* <https://api-server-8uyb.onrender.com/plant>
