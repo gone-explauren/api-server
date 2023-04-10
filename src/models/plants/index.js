@@ -1,15 +1,15 @@
 'use strict'
 
-const { DateTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 const Plant = (sequelize) => {
 	return sequelize.define('Plant', {
 		species: {
-			type: DateTypes.STRING,
+			type: DataTypes.STRING,
 			allowNull: false,
 		},
 		sunNeeds: {
-			type: DateTypes.ENUM('full', 'indirect sunlight', 'low light'),
+			type: DataTypes.ENUM('full', 'indirect sunlight', 'low light'),
 			allowNull: false,
 		},
 		canFlower: {
@@ -20,12 +20,12 @@ const Plant = (sequelize) => {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
-		// foriegn key for the Band model
-		roomID: {
+		// foriegn key for the Room model
+		room: {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
 	});
 }
 
-module.exports = Room;
+module.exports = Plant;

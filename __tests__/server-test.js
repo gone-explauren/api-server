@@ -1,15 +1,23 @@
 'use strict'
 
+const server = require('../src/server')
+const supertest = require('supertest');
+
 // integration test
 const { sequelize, Room, Plant } = require('../src/models');
 
-beforeAll(async() => {
+const request = supertest(server.app)
+
+beforeAll(async () => {
 	await sequelize.sync();
 });
 
 afterAll(async() => {
 	await sequelize.drop();
 });
+
+let roomID = '';
+let plantID = '';
 
 describe('Testing the express server', () => {
   test('Should return a 404 on a bad route', async () => {
@@ -33,7 +41,7 @@ describe('Testing data models', () => {
 			petAccess: false,
 		});
 
-		roomID = newRoom.id
+		roomID = newRoom.id;
 		expect(newRoom.name).toEqual('library');
 		expect(roomID).toBeTruthy();
 	});
@@ -44,20 +52,23 @@ describe('Testing data models', () => {
 			sunNeeds: 'indirect light',
 			canFlower: false,
       petSafe: false,
-			roomID: roomID
+			room: roomID,
 		});
-
+		
+		plantID = newPlant.id;
 		expect(newPlant.species).toEqual('philodendron');
-		expect(newPlant.roomID).toEqual('roomID');
+		expect(newPlant.room).toEqual(1);
 	});
 
 	test('Can fetch a plant and the room it\'s in', async () => {
     let plant = await Plant.read(plantID, {
       include: Room.model
     });
+		// checking association betwen two tables
+		let room = await Room.read(plant.room)
 
     console.log("Plant with association: ", plant.species);
     expect(plant.species).toEqual('philodendron');
-    expect(plant.Room.name).toEqual('Library');
+    expect(room.name).toEqual('library');
   });
 });

@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(logger);
-app.use('/room', roomsRouter);
-app.use('/plant', plantsRouter);
+app.use('/room', roomRouter);
+app.use('/plant', plantRouter);
 
 app.use('*', error404);
 app.use(error500)

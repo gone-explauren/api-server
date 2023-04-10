@@ -2,7 +2,7 @@
 
 class Collection {
 	constructor(model) {
-		this.model = model
+		this.model = model;
 	}
 
 	async read(id, options) {
