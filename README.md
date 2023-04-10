@@ -7,4 +7,4 @@
 
 ## PRs:
 * Lab-03 complete, tests passing: <https://github.com/gone-explauren/api-server/pull/6>
-* Lab-04 complete, tests passing: <>
+* Lab-04 complete, tests passing: <https://github.com/gone-explauren/api-server/pull/7>
