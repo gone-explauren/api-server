@@ -24,7 +24,7 @@ const PlantModel = createPlant(sequelize);
 // establish our associations / relationships
 // (from sequelize model method)
 RoomModel.hasMany(PlantModel, { foriegnKey: "roomID", sourceKey: 'id' });
-PlantsModel.belongsTo(RoomModel, { foriegnKey: "roomID", targetKey: 'id' });
+PlantModel.belongsTo(RoomModel, { foriegnKey: "roomID", targetKey: 'id' });
 
 module.exports = { 
 	sequelize, 

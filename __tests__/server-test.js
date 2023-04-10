@@ -1,15 +1,23 @@
 'use strict'
 
+const server = require('../src/server')
+const supertest = require('supertest');
+
 // integration test
 const { sequelize, Room, Plant } = require('../src/models');
 
-beforeAll(async() => {
+const request = supertest(server.app)
+
+beforeAll(async () => {
 	await sequelize.sync();
 });
 
 afterAll(async() => {
 	await sequelize.drop();
 });
+
+let roomID = '';
+let plantID = '';
 
 describe('Testing the express server', () => {
   test('Should return a 404 on a bad route', async () => {
