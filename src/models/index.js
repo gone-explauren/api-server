@@ -13,18 +13,18 @@ const SQL_URL = process.env.SQUL_UL || "sqlite:memory:";
 // using Sequelize to create a table to handle all the Clothes instances
 const sequelize = new Sequelize(SQL_URL)
 
-const Collection = require('./collection.js');
+const Collection = require('./collection');
 
-const createRoom = require('./rooms/index.js');
+const createRoom = require('./rooms/index');
 const RoomModel = createRoom(sequelize);
 
-const createPlant = require('./plants/index.js');
+const createPlant = require('./plants/index');
 const PlantModel = createPlant(sequelize);
 
 // establish our associations / relationships
 // (from sequelize model method)
-RoomModel.hasMany(PlantModel, { foriegnKey: "roomID", sourceKey: 'id' });
-PlantModel.belongsTo(RoomModel, { foriegnKey: "roomID", targetKey: 'id' });
+RoomModel.hasMany(PlantModel, { foriegnKey: "room", sourceKey: 'id' });
+PlantModel.belongsTo(RoomModel, { foriegnKey: "room", targetKey: 'id' });
 
 module.exports = { 
 	sequelize, 

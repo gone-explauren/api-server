@@ -20,8 +20,8 @@ const Plant = (sequelize) => {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
-		// foriegn key for the Band model
-		roomID: {
+		// foriegn key for the Room model
+		room: {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
