@@ -6,5 +6,5 @@
 * <https://api-server-8uyb.onrender.com/plant>
 
 ## PRs:
-* Lab-03 complete, tests passing: <https://github.com/gone-explauren/api-server/tree/basic-api>
+* Lab-03 complete, tests passing: <https://github.com/gone-explauren/api-server/pull/6>
 * Lab-04 complete, tests passing: <>
